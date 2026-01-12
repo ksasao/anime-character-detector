@@ -1,6 +1,8 @@
 # anime-character-detector
 YOLOX-based anime character detector running in browser with ONNX Runtime Web (WebGPU/WASM)
 
+![Demo Screenshot](result.jpg)
+
 ## Links
 
 - **Web Demo**: [https://ksasao.github.io/anime-character-detector/](https://ksasao.github.io/anime-character-detector/)
