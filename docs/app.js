@@ -553,6 +553,10 @@ function prepareInput(imgEl) {
 
   ctx.fillStyle = "rgb(114,114,114)"; // YOLOX default padding color
   ctx.fillRect(0, 0, INPUT_WIDTH, INPUT_HEIGHT);
+  
+  // Use high-quality interpolation for better small object detection
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
   ctx.drawImage(imgEl, 0, 0, newW, newH);
 
   const imageData = ctx.getImageData(0, 0, INPUT_WIDTH, INPUT_HEIGHT);
