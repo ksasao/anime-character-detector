@@ -151,8 +151,8 @@ const MESSAGES = {
     en: "Loading model...",
   },
   dropzoneLabel: {
-    ja: "ここに画像ファイルをドラッグ&ドロップ<br>またはクリックしてファイルを選択",
-    en: "Drag & drop image here<br>or click to select file",
+    ja: "ここに画像ファイルをドラッグ&ドロップ<br>またはクリックしてファイルを選択<br>貼り付けも可能",
+    en: "Drag & drop image here<br>or click to select file<br>or paste from clipboard",
   },
   scoreThresholdLabel: {
     ja: "スコア閾値",
@@ -497,6 +497,24 @@ function setupDragAndDrop() {
   fileInput.addEventListener("change", () => {
     if (fileInput.files && fileInput.files.length > 0) {
       handleFile(fileInput.files[0]);
+    }
+  });
+
+  // Setup paste event listener
+  document.addEventListener("paste", (e) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.type.startsWith("image/")) {
+        e.preventDefault();
+        const blob = item.getAsFile();
+        if (blob) {
+          handleFile(blob);
+        }
+        break;
+      }
     }
   });
 }
